@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews(){
         pd = new ProgressDialog(this);
-        pd.setMessage("Fetching Movies..");
+        pd.setMessage("Fetching Movies...");
         pd.setCancelable(false);
         pd.show();
         recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
