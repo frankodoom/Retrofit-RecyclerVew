@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 loadJSON();
-                Toast.makeText(MainActivity.this, movieArrayList.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Movie List Refreshed.", Toast.LENGTH_SHORT).show();
             }
         });
     }
