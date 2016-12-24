@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "net.accedegh.retrofitlibrary"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -30,7 +30,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.picasso:picasso:2.4.0'
-
+    compile 'com.github.jd-alexander:LikeButton:0.2.0'
     compile'com.github.bumptech.glide:glide:3.7.0'
+   // compile 'com.github.varunest:sparkbutton:1.0.3'
     testCompile 'junit:junit:4.12'
 }

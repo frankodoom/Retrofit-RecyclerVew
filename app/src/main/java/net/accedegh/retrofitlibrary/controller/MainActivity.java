@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         //https://guides.codepath.com/android/Implementing-Pull-to-Refresh-Guide
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_red_light);
+
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

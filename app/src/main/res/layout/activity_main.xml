@@ -14,5 +14,4 @@
     android:layout_width="match_parent"
     tools:showIn="@layout/activity_main"
     tools:context=".controller.MainActivity"/>
-
 </android.support.v4.widget.SwipeRefreshLayout>
