@@ -107,7 +107,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     //RecyclerView mRecycler;
     // Add a list of ites
-    public void addAll(List<Movie> mov) {
+    public void addAll(int position, List<Movie> mov) {
         movies.addAll(0,mov);
         notifyItemInserted(0);
         //mRecycler.smoothScrollToPosition(0);

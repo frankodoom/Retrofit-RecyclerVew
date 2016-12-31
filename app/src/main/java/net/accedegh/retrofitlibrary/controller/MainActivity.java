@@ -7,26 +7,27 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.accedegh.retrofitlibrary.MoviesAdapter;
 import net.accedegh.retrofitlibrary.R;
-import net.accedegh.retrofitlibrary.api.apiService;
+import net.accedegh.retrofitlibrary.api.Service;
+import net.accedegh.retrofitlibrary.api.Client;
 import net.accedegh.retrofitlibrary.model.Movie;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Movie> movieArrayList;
+     TextView Disconnected;
     private Movie mov;
     ProgressDialog pd;
     private SwipeRefreshLayout swipeContainer;
@@ -35,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       // Disconnected.setVisibility(View.INVISIBLE);
         initViews();
         //https://guides.codepath.com/android/Implementing-Pull-to-Refresh-Guide
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
         // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_red_light);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -64,17 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loadJSON() {
-
+        Disconnected = (TextView) findViewById(R.id.disconnected);
         try {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://orionadmin.azurewebsites.net")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            //pd.show();
-
-            apiService request = retrofit.create(apiService.class);
+            Client Client = new Client();
+            Service request = net.accedegh.retrofitlibrary.api.Client.retrofit.create(Service.class);
             Call<List<Movie>> call = request.getMovies();
             call.enqueue(new Callback<List<Movie>>() {
+
                 @Override
                 public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
                     movieArrayList = response.body();
@@ -89,13 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onFailure(Call<List<Movie>> call, Throwable t) {
                     Log.d("Error", t.getMessage());
                     Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
+                    Disconnected.setVisibility(View.VISIBLE);
                     pd.hide();
                 }
 
             });
 
-
-            //});
         } catch (Exception e) {
             Log.d("Error", e.getMessage());
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

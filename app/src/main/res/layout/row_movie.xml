@@ -7,6 +7,7 @@
     android:layout_marginRight="10dp"
     android:clickable="true"
     android:focusable="true"
+    android:elevation="60dp"
     android:foreground="?android:attr/selectableItemBackground"
     xmlns:android="http://schemas.android.com/apk/res/android">
 

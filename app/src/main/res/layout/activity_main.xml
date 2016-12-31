@@ -13,5 +13,17 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:showIn="@layout/activity_main"
+    android:backgroundTint="#f2f2f2"
     tools:context=".controller.MainActivity"/>
+
+    <TextView
+        android:id="@+id/disconnected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" :-( No Internet Connection, Please Make Sure Your Device Is Connected To The Internet
+        And Try Again!"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+
+
 </android.support.v4.widget.SwipeRefreshLayout>
